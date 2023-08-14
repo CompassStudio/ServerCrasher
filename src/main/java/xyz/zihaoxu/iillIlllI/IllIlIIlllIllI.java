@@ -13,6 +13,9 @@ import xyz.zihaoxu.llllllllllII;
 import java.time.Instant;
 import java.util.BitSet;
 
+// FROM Zihaoxu2008
+// 现在是11:32 a.m.
+// 我困了,让我睡会,这个类基本没混淆
 public class IllIlIIlllIllI implements SessionListener { // Class: Listener
     @Override
     public void packetReceived(Session session, Packet packet) {

