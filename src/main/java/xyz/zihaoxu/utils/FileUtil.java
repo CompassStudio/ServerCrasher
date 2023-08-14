@@ -10,7 +10,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public class FileUtil {
-    public static void saveResource(File target, String path) throws IOException {
+    public static void saveResource(File target, String path, boolean overwrite) throws IOException {
+        if (target.exists() && !overwrite) return;
         try (InputStream stream = Main.class.getClassLoader().getResourceAsStream(path)) {
             BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(target.toPath()));
             bos.write(IOUtils.toByteArray(stream));
