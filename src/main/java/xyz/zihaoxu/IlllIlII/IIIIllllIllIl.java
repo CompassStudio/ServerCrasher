@@ -7,6 +7,9 @@ import com.github.steveice10.packetlib.event.session.SessionListener;
 import com.github.steveice10.packetlib.packet.PacketProtocol;
 import com.github.steveice10.packetlib.tcp.TcpClientSession;
 import org.jetbrains.annotations.Nullable;
+import xyz.zihaoxu.Main;
+import xyz.zihaoxu.script.ScriptManager;
+import xyz.zihaoxu.script.obj.ScriptBot;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -16,6 +19,8 @@ import java.util.BitSet;
 
 public class IIIIllllIllIl { // Class: Bot
     public TcpClientSession OhMyGod; // client
+    private final ScriptBot script;
+
     // 祖安式传参
     public IIIIllllIllIl(String WhatTheFuck/*host*/, int HolyShit/*port*/, String HolyCrap/*nickname*/, @Nullable ProxyInfo Shit) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         // 传统艺能: 通过反射获取需要的类
@@ -33,6 +38,8 @@ public class IIIIllllIllIl { // Class: Bot
         * }else{
         *   this.client=new TcpClientSession(host,port,new MinecraftProtocol(nickname),proxy_info);
         * */
+        script = new ScriptBot(this);
+        Main.scriptManager.call("bot_created", HolyCrap, script);
     }
 
     // 嗯对,原神传参
@@ -44,6 +51,7 @@ public class IIIIllllIllIl { // Class: Bot
     }
 
     public void exit() throws InterruptedException { // connect()
+        Main.scriptManager.call("bot_pre_connect", script);
         this.OhMyGod.setConnectTimeout(3); // 防止在一个代理上吊死
         this.OhMyGod.connect(true);
         while (this.OhMyGod.isConnected()){
@@ -63,5 +71,9 @@ public class IIIIllllIllIl { // Class: Bot
                         new BitSet()
                 )
         );
+    }
+
+    public ScriptBot getScript() {
+        return script;
     }
 }

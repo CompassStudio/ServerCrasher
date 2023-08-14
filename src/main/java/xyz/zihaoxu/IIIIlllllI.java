@@ -4,10 +4,8 @@ import com.github.steveice10.packetlib.ProxyInfo;
 import org.xbill.DNS.*;
 import org.xbill.DNS.Record;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import javax.script.ScriptException;
+import java.io.*;
 import java.net.UnknownHostException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -19,23 +17,36 @@ public class IIIIlllllI { // Class: ServerCrasher
         this.qqqqqq =awaaaa;
     }
 
-    public void aaaawawaw() throws TextParseException, UnknownHostException, FileNotFoundException { // Method: run()
+    public void aaaawawaw() throws IOException, ScriptException { // Method: run()
         Scanner aaaaawa=new Scanner(System.in); // scanner
         System.out.println("==============================");
         System.out.println("ServerFucker - By 星空-幻想");
         // System.out.println("为Sysrom祈祷 :)");
         System.out.println("==============================");
+
+        // 加载脚本
+        try {
+            System.out.println("正在加载脚本");
+            Main.scriptManager.init();
+            Main.scriptManager.loadFolder(new File("scripts"));
+        } catch (Throwable t) {
+            System.err.println("脚本加载失败");
+            t.printStackTrace();
+        }
+
+        // region 设定目标
         System.out.println("崩服器即将启动,在那之前你需要填写一些信息");
         System.out.print("攻击的目标: ");
         String target = "";
         if (aaaaawa.hasNextLine()){ // scanner.hasNextLine() 下同
             target= aaaaawa.nextLine();
         }
+        Main.scriptManager.call("target_selected", target); // target_selected事件
         System.out.println("正在解析地址");
         String host; // 这边懒得混淆了
         int port=25565;
 
-        // 这一整段都是那个抽了风的地址解析
+        // region 这一整段都是那个抽了风的地址解析
         String[] temp = target.split(":");
         if (temp.length==2){
             host=temp[0];
@@ -53,8 +64,13 @@ public class IIIIlllllI { // Class: ServerCrasher
             }
         }
         System.out.println("解析完成:"+host+":"+port);
+        // endregion
+        Main.scriptManager.call("dns_resolved", host, port);
         llllllllllII.lllIlIll =host; // Configure.host = host;
         llllllllllII.IllIlIl =port; // Configure.port = port;
+        // endregion
+
+        // region 配置bot
         System.out.println("你希望机器人的名字以什么开头?");
         System.out.print("留空以随机: ");
         String prefix="";
@@ -68,6 +84,9 @@ public class IIIIlllllI { // Class: ServerCrasher
             count= Integer.parseInt(aaaaawa.nextLine());
         }
         llllllllllII.an114514 =count;
+        Main.scriptManager.call("bot_configured", prefix, count);
+        // endregion
+
         System.out.println("是否以最小化运行?(true/false)");
         System.out.println("默认为false: ");
         String mimi="";
@@ -84,6 +103,8 @@ public class IIIIlllllI { // Class: ServerCrasher
             }
             llllllllllII.ananan = text;
         }
+
+        // region 配置代理
         System.out.println("最后一步,你希望使用代理吗?如果是,输入代理文件的地址(.txt格式)");
         System.out.print("留空以不使用: ");
         String aawaw="";
@@ -106,7 +127,10 @@ public class IIIIlllllI { // Class: ServerCrasher
                 // 反正我没给这个东西用过除了SOCKS4以外的代理
             }
         }
+        // endregion
+
         System.out.println("准备启动...");
+        Main.scriptManager.call("pre_start");
         this.awawa(); // this.run()
     }
 

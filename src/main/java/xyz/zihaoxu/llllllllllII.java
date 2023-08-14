@@ -4,6 +4,7 @@ import com.github.steveice10.packetlib.ProxyInfo;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class llllllllllII { // Class: Configure 这个是配置
     public static String lllIlIll; // host: String
@@ -23,6 +24,12 @@ public class llllllllllII { // Class: Configure 这个是配置
         for (int i=0;i<6;i++){
             qwq.append((char) (qaq.nextInt(26)+'a'));
         }
-        return qwq.toString();
+
+        // 允许脚本更改生成的名称
+        AtomicReference<String> atom = new AtomicReference<>();
+        atom.set(qwq.toString());
+        Main.scriptManager.call("random_name_gen", atom);
+
+        return atom.get();
     }
 }

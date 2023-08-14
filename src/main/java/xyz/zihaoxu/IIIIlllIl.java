@@ -34,7 +34,7 @@ public class IIIIlllIl implements Runnable{ // AttackThread
                         llIlllIl // proxy_info
                 );
                 if (!llllllllllII.aaawwawwa){
-                    HelloWorld.println(new IllIlIIlllIllI()); // bot.addListener(new Listener());
+                    HelloWorld.println(new IllIlIIlllIllI(HelloWorld.getScript())); // bot.addListener(new Listener());
                 }
                 HelloWorld.exit(); // bot.connect();
                 HelloWorld=null;

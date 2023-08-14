@@ -8,7 +8,9 @@ import com.github.steveice10.mc.protocol.packet.ingame.serverbound.player.Server
 import com.github.steveice10.packetlib.Session;
 import com.github.steveice10.packetlib.event.session.*;
 import com.github.steveice10.packetlib.packet.Packet;
+import xyz.zihaoxu.Main;
 import xyz.zihaoxu.llllllllllII;
+import xyz.zihaoxu.script.obj.ScriptBot;
 
 import java.time.Instant;
 import java.util.BitSet;
@@ -17,6 +19,12 @@ import java.util.BitSet;
 // 现在是11:32 a.m.
 // 我困了,让我睡会,这个类基本没混淆
 public class IllIlIIlllIllI implements SessionListener { // Class: Listener
+    private final ScriptBot bot;
+
+    public IllIlIIlllIllI(ScriptBot bot) {
+        this.bot = bot;
+    }
+
     @Override
     public void packetReceived(Session session, Packet packet) {
         if (packet instanceof ClientboundLoginPacket){
@@ -38,6 +46,8 @@ public class IllIlIIlllIllI implements SessionListener { // Class: Listener
                     session.send(new ServerboundSwingPacket(Hand.OFF_HAND));
                 }
             });
+
+            Main.scriptManager.call("bot_login", bot);
         }
     }
 
