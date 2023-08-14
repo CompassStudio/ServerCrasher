@@ -34,3 +34,7 @@ Bot连接方法开始时
 # bot_login
 Bot登入服务器后
 - ScriptBot **bot** 机器人实例
+
+# bot_login_finish
+内置的Listener加载结束
+- ScriptBot **bot** 机器人实例

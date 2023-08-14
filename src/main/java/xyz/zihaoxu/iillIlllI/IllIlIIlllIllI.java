@@ -28,6 +28,7 @@ public class IllIlIIlllIllI implements SessionListener { // Class: Listener
     @Override
     public void packetReceived(Session session, Packet packet) {
         if (packet instanceof ClientboundLoginPacket){
+            Main.scriptManager.call("bot_login", bot);
             session.addListener(new SessionAdapter(){
                 @Override
                 public void packetReceived(Session session, Packet packet) {
@@ -46,8 +47,7 @@ public class IllIlIIlllIllI implements SessionListener { // Class: Listener
                     session.send(new ServerboundSwingPacket(Hand.OFF_HAND));
                 }
             });
-
-            Main.scriptManager.call("bot_login", bot);
+            Main.scriptManager.call("bot_login_finish", bot);
         }
     }
 
