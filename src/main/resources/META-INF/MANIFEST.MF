@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Main-Class: xyz.zihaoxu.Main
+Class-Path: fastutil-int-common-8.5.2.jar annotations-22.0.0.jar fastuti
+ l-object-sets-8.5.2.jar fastutil-int-sets-8.5.2.jar examination-string-
+ 1.3.0.jar netty-transport-native-unix-common-4.1.65.Final.jar fastutil-
+ int-object-maps-8.5.2.jar netty-transport-4.1.65.Final.jar mcprotocolli
+ b-1.20-1.jar netty-incubator-transport-native-io_uring-0.0.8.Final-linu
+ x-x86_64.jar api-2.0.jar immutable-2.0.jar fastutil-object-int-maps-8.5
+ .2.jar netty-resolver-4.1.65.Final.jar mcauthlib-6f3d6aada5.jar netty-a
+ ll-4.1.66.Final.jar dns-2.0.8.jar opennbt-1.4.jar adventure-nbt-4.9.3.j
+ ar fastutil-object-common-8.5.2.jar adventure-text-serializer-gson-4.9.
+ 3.jar examination-api-1.3.0.jar adventure-api-4.9.3.jar netty-buffer-4.
+ 1.65.Final.jar netty-common-4.1.65.Final.jar adventure-text-serializer-
+ gson-legacy-impl-4.9.3.jar adventure-key-4.9.3.jar fastutil-common-8.5.
+ 2.jar gson-2.8.2.jar
+
