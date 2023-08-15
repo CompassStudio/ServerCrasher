@@ -37,6 +37,9 @@ public class AttackThread implements Runnable{ // AttackThread
                     bot.addListener(new Listener(bot.getScript())); // bot.addListener(new Listener());
                 }
                 bot.run(); // bot.connect();
+//                while (bot.client.isConnected()){
+//
+//                }
                 bot.client =null;
                 // System.gc(); // 看到这里的应该知道为什么我说烧cpu了
                 Thread.sleep(1000);

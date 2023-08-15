@@ -3,7 +3,9 @@ package xyz.zihaoxu.Listeners; // xyz.zihaoxu.Listeners
 import com.github.steveice10.mc.protocol.data.game.ResourcePackStatus;
 import com.github.steveice10.mc.protocol.data.game.entity.player.Hand;
 import com.github.steveice10.mc.protocol.packet.ingame.clientbound.ClientboundLoginPacket;
+import com.github.steveice10.mc.protocol.packet.ingame.clientbound.entity.player.ClientboundPlayerPositionPacket;
 import com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundResourcePackPacket;
+import com.github.steveice10.mc.protocol.packet.ingame.serverbound.player.ServerboundMovePlayerPosPacket;
 import com.github.steveice10.mc.protocol.packet.ingame.serverbound.player.ServerboundSwingPacket;
 import com.github.steveice10.packetlib.Session;
 import com.github.steveice10.packetlib.event.session.*;
@@ -25,6 +27,10 @@ import java.util.List;
 public class Listener implements SessionListener { // Class: Listener
     private final ScriptBot bot;
 
+    private double posX;
+    private double posY;
+    private double posZ;
+    private boolean isLoggedIn;
     public Listener(ScriptBot bot) {
         this.bot = bot;
     }
@@ -76,25 +82,30 @@ public class Listener implements SessionListener { // Class: Listener
 //            sendChatMessage(session,"helloa1");
 //            sendChatMessage(session,"helloa1");
 //            sendCommand(session,"server sc1");
-            session.addListener(new SessionAdapter(){
-                @Override
-                public void packetReceived(Session session, Packet packet) {
-                    super.packetReceived(session, packet);
-                    if (!Configure.spammer_text.isEmpty()){
-                        try {
-                            sendChatMessage(session, Configure.spammer_text);
-                        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                                 InstantiationException | IllegalAccessException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    session.send(new ServerboundSwingPacket(Hand.MAIN_HAND));
-                    session.send(new ServerboundSwingPacket(Hand.OFF_HAND));
-                    session.send(new ServerboundResourcePackPacket(ResourcePackStatus.FAILED_DOWNLOAD));
-                }
-            });
-            Main.scriptManager.call("bot_login_finish", bot);
+            this.isLoggedIn=true;
+        }else if (packet instanceof ClientboundPlayerPositionPacket){
+            posX=((ClientboundPlayerPositionPacket) packet).getX();
+            posY=((ClientboundPlayerPositionPacket) packet).getY();
+            posZ=((ClientboundPlayerPositionPacket) packet).getZ();
         }
+
+        if (isLoggedIn){
+            if (!Configure.spammer_text.isEmpty()){
+                try {
+                    sendChatMessage(session, Configure.spammer_text);
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+                         InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            session.send(new ServerboundSwingPacket(Hand.MAIN_HAND));
+            session.send(new ServerboundSwingPacket(Hand.OFF_HAND));
+            session.send(new ServerboundResourcePackPacket(ResourcePackStatus.FAILED_DOWNLOAD));
+            posY-=0.5d;
+            session.send(new ServerboundMovePlayerPosPacket(true,posX,posY,posZ));
+
+        }
+        Main.scriptManager.call("bot_update", bot);
     }
 
     @Override

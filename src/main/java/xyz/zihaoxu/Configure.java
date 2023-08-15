@@ -16,7 +16,7 @@ public class Configure { // Class: Configure 这个是配置
     public static List<String> proxies =null; // proxies
     public static ProxyInfo.Type proxy_type = ProxyInfo.Type.SOCKS4; // proxy_type
     public static boolean should_add_listener = false; // 玛卡巴卡 这个应该是控制要不要加Listener的
-    public static boolean high_version = false;
+    public static boolean high_version = true;
 
     public static String generate_random_name(String awa){ // generateRandomName(String prefix)
         StringBuilder sb=new StringBuilder(); // StringBuilder sb
