@@ -1,10 +1,14 @@
 package xyz.zihaoxu.iillIlllI; // xyz.zihaoxu.Listeners
 
+import com.github.steveice10.mc.protocol.data.game.ResourcePackStatus;
 import com.github.steveice10.mc.protocol.data.game.entity.player.Hand;
 import com.github.steveice10.mc.protocol.packet.ingame.clientbound.ClientboundDisconnectPacket;
 import com.github.steveice10.mc.protocol.packet.ingame.clientbound.ClientboundLoginPacket;
+import com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatCommandPacket;
 import com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatPacket;
+import com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundResourcePackPacket;
 import com.github.steveice10.mc.protocol.packet.ingame.serverbound.player.ServerboundSwingPacket;
+import com.github.steveice10.mc.protocol.packet.login.serverbound.ServerboundCustomQueryPacket;
 import com.github.steveice10.packetlib.Session;
 import com.github.steveice10.packetlib.event.session.*;
 import com.github.steveice10.packetlib.packet.Packet;
@@ -14,6 +18,7 @@ import xyz.zihaoxu.script.obj.ScriptBot;
 
 import java.time.Instant;
 import java.util.BitSet;
+import java.util.Collections;
 
 // FROM Zihaoxu2008
 // 现在是11:32 a.m.
@@ -25,10 +30,35 @@ public class IllIlIIlllIllI implements SessionListener { // Class: Listener
         this.bot = bot;
     }
 
+    public void sendChatMessage(Session session,String message){
+        session.send(new ServerboundChatPacket(
+                message,
+                Instant.now().toEpochMilli(),
+                0L,
+                null,
+                0,
+                new BitSet()
+        ));
+    }
+
+    public void sendCommand(Session session,String command){
+        session.send(new ServerboundChatCommandPacket(
+                command,
+                Instant.now().toEpochMilli(),
+                0L,
+                Collections.emptyList(),
+                0,
+                new BitSet()
+        ));
+    }
+
     @Override
     public void packetReceived(Session session, Packet packet) {
         if (packet instanceof ClientboundLoginPacket){
             Main.scriptManager.call("bot_login", bot);
+//            sendChatMessage(session,"helloa1");
+//            sendChatMessage(session,"helloa1");
+//            sendCommand(session,"server sc1");
             session.addListener(new SessionAdapter(){
                 @Override
                 public void packetReceived(Session session, Packet packet) {
@@ -45,6 +75,7 @@ public class IllIlIIlllIllI implements SessionListener { // Class: Listener
                     }
                     session.send(new ServerboundSwingPacket(Hand.MAIN_HAND));
                     session.send(new ServerboundSwingPacket(Hand.OFF_HAND));
+                    session.send(new ServerboundResourcePackPacket(ResourcePackStatus.FAILED_DOWNLOAD));
                 }
             });
             Main.scriptManager.call("bot_login_finish", bot);

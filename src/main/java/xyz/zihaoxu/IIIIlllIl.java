@@ -37,9 +37,10 @@ public class IIIIlllIl implements Runnable{ // AttackThread
                     HelloWorld.println(new IllIlIIlllIllI(HelloWorld.getScript())); // bot.addListener(new Listener());
                 }
                 HelloWorld.exit(); // bot.connect();
-                HelloWorld=null;
+                HelloWorld.OhMyGod=null;
                 // System.gc(); // 看到这里的应该知道为什么我说烧cpu了
-                // Thread.sleep(1000);
+                Thread.sleep(1000);
+                HelloWorld=null;
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException |
                      InvocationTargetException | InterruptedException e) {
                 throw new RuntimeException(e); // 我觉得这个东西属于多余

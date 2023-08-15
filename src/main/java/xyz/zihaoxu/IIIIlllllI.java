@@ -1,6 +1,7 @@
 package xyz.zihaoxu;
 
 import com.github.steveice10.packetlib.ProxyInfo;
+import com.github.steveice10.packetlib.tcp.TcpSession;
 import org.xbill.DNS.*;
 import org.xbill.DNS.Record;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class IIIIlllllI { // Class: ServerCrasher
     private String[] qqqqqq; // args
+    public static String dnsServer="8.8.8.8";
     public IIIIlllllI(String[] awaaaa/*args*/){
         this.qqqqqq =awaaaa;
     }
@@ -53,7 +55,7 @@ public class IIIIlllllI { // Class: ServerCrasher
             port=Integer.parseInt(temp[1]);
         }else {
             Lookup lookup=new Lookup("_minecraft._tcp."+temp[0], Type.SRV);
-            lookup.setResolver(new SimpleResolver("8.8.8.8"));
+            lookup.setResolver(new SimpleResolver(dnsServer));
             Record[] records=lookup.run();
             if (records!=null && records.length>0){
                 System.out.println("检测到srv记录,将使用srv解析结果");
@@ -62,6 +64,12 @@ public class IIIIlllllI { // Class: ServerCrasher
             }else {
                 host=temp[0];
             }
+        }
+        Lookup lookup=new Lookup(host,Type.A);
+        lookup.setResolver(new SimpleResolver(dnsServer));
+        Record[] records=lookup.run();
+        if (records!=null && records.length>0){
+            host=((ARecord)records[0]).getAddress().getHostAddress();
         }
         System.out.println("解析完成:"+host+":"+port);
         // endregion

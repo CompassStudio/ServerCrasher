@@ -21,8 +21,13 @@ public class llllllllllII { // Class: Configure 这个是配置
         StringBuilder qwq=new StringBuilder(); // StringBuilder sb
         qwq.append(awa);
         Random qaq=new Random();
-        for (int i=0;i<6;i++){
-            qwq.append((char) (qaq.nextInt(26)+'a'));
+        int len=qaq.nextInt(4,10);
+        for (int i=0;i<len;i++){
+            if (qaq.nextBoolean()) {
+                qwq.append((char) (qaq.nextInt(26) + 'a'));
+            }else {
+                qwq.append((char) (qaq.nextInt(26) + 'A'));
+            }
         }
 
         // 允许脚本更改生成的名称

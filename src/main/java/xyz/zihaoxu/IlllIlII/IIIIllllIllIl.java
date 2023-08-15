@@ -1,7 +1,9 @@
 package xyz.zihaoxu.IlllIlII; // xyz.zihaoxu.protocol
 
 import com.github.steveice10.mc.protocol.MinecraftProtocol;
+import com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatCommandPacket;
 import com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatPacket;
+import com.github.steveice10.packetlib.BuiltinFlags;
 import com.github.steveice10.packetlib.ProxyInfo;
 import com.github.steveice10.packetlib.event.session.SessionListener;
 import com.github.steveice10.packetlib.packet.PacketProtocol;
@@ -16,6 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.BitSet;
+import java.util.Collections;
 
 public class IIIIllllIllIl { // Class: Bot
     public TcpClientSession OhMyGod; // client
@@ -32,6 +35,9 @@ public class IIIIllllIllIl { // Class: Bot
             Constructor<?> Minecraft = FAQ.getDeclaredConstructor(String.class, int.class, PacketProtocol.class,ProxyInfo.class); // constructor
             this.OhMyGod = (TcpClientSession) Minecraft.newInstance(WhatTheFuck, HolyShit, new MinecraftProtocol(HolyCrap),Shit);
         }
+
+        // this.OhMyGod.setFlag(BuiltinFlags.PRINT_DEBUG,true);
+
         /*
         * if(proxy_info==null){
         *   this.client=new TcpClientSession(host,port,new MinecraftProtocol(nickname));
@@ -39,6 +45,7 @@ public class IIIIllllIllIl { // Class: Bot
         *   this.client=new TcpClientSession(host,port,new MinecraftProtocol(nickname),proxy_info);
         * */
         script = new ScriptBot(this);
+        script.name=HolyCrap;
         Main.scriptManager.call("bot_created", HolyCrap, script);
     }
 
@@ -57,7 +64,6 @@ public class IIIIllllIllIl { // Class: Bot
         while (this.OhMyGod.isConnected()){
             Thread.sleep(1000);
         }
-        this.OhMyGod=null;
     }
 
     public void lllIlIll(String OP){ // sendChatMessage(String msg);
@@ -67,6 +73,19 @@ public class IIIIllllIllIl { // Class: Bot
                         Instant.now().toEpochMilli(),
                         0L,
                         null,
+                        0,
+                        new BitSet()
+                )
+        );
+    }
+
+    public void sendCommand(String command){
+        this.OhMyGod.send(
+                new ServerboundChatCommandPacket(
+                        command,
+                        Instant.now().toEpochMilli(),
+                        0L,
+                        Collections.emptyList(),
                         0,
                         new BitSet()
                 )
