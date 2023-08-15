@@ -8,8 +8,8 @@ import com.github.steveice10.packetlib.packet.PacketProtocol;
 import com.github.steveice10.packetlib.tcp.TcpClientSession;
 import org.jetbrains.annotations.Nullable;
 import xyz.zihaoxu.Main;
-import xyz.zihaoxu.Configure;
 import xyz.zihaoxu.script.obj.ScriptBot;
+import xyz.zihaoxu.utils.Utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -78,7 +78,7 @@ public class Bot { // Class: Bot
 //                        new BitSet()
 //                )
 //        );
-        if (Configure.high_version){
+        if (Utils.high_version){
             Class<?> clazz=Class.forName("com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatPacket");
             Constructor<?> constructor=clazz.getDeclaredConstructor(String.class,long.class,long.class,byte[].class,int.class,BitSet.class);
             this.client.send(
@@ -99,7 +99,7 @@ public class Bot { // Class: Bot
     }
 
     public void sendCommand(String command) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        if(Configure.high_version) {
+        if(Utils.high_version) {
             Class<?> clazz = Class.forName("com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatCommandPacket");
             Constructor<?> c = clazz.getDeclaredConstructor(String.class, long.class, long.class, List.class, int.class, BitSet.class);
             this.client.send(

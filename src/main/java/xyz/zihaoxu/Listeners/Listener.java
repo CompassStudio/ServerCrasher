@@ -12,7 +12,9 @@ import com.github.steveice10.packetlib.event.session.*;
 import com.github.steveice10.packetlib.packet.Packet;
 import xyz.zihaoxu.Main;
 import xyz.zihaoxu.Configure;
+import xyz.zihaoxu.ServerCrasher;
 import xyz.zihaoxu.script.obj.ScriptBot;
+import xyz.zihaoxu.utils.Utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -36,7 +38,7 @@ public class Listener implements SessionListener { // Class: Listener
     }
 
     public void sendChatMessage(Session session,String message) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        if (Configure.high_version){
+        if (Utils.high_version){
             Class<?> clazz=Class.forName("com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatPacket");
             Constructor<?> constructor=clazz.getDeclaredConstructor(String.class,long.class,long.class,byte[].class,int.class,BitSet.class);
             session.send(
@@ -57,7 +59,7 @@ public class Listener implements SessionListener { // Class: Listener
     }
 
     public void sendCommand(Session session,String command) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        if(Configure.high_version) {
+        if(Utils.high_version) {
             Class<?> clazz = Class.forName("com.github.steveice10.mc.protocol.packet.ingame.serverbound.ServerboundChatCommandPacket");
             Constructor<?> c = clazz.getDeclaredConstructor(String.class, long.class, long.class, List.class, int.class, BitSet.class);
             session.send(
@@ -90,9 +92,9 @@ public class Listener implements SessionListener { // Class: Listener
         }
 
         if (isLoggedIn){
-            if (!Configure.spammer_text.isEmpty()){
+            if (!ServerCrasher.configure.spammer_text.isEmpty()){
                 try {
-                    sendChatMessage(session, Configure.spammer_text);
+                    sendChatMessage(session, ServerCrasher.configure.spammer_text);
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                          InstantiationException | IllegalAccessException e) {
                     throw new RuntimeException(e);

@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             scriptManager.init();
-            new ServerCrasher(args).aaaawawaw();
+            new ServerCrasher(args).run();
         } catch (IOException | ScriptException e) {
             throw new RuntimeException(e);
         }
