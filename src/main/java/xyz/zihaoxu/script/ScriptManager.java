@@ -21,7 +21,7 @@ public class ScriptManager {
         if (!dir.exists()) dir.mkdir();
         if (!stdDir.exists()) stdDir.mkdir();
 
-        saveResource(new File(dir, "example.js"), "scripts/example.js", false);
+        // saveResource(new File(dir, "example.js"), "scripts/example.js", false);
     }
 
     public void loadFolder(File folder) throws ScriptException, IOException {

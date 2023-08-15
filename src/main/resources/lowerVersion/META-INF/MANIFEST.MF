@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Main-Class: xyz.zihaoxu.Main
+Class-Path: spotbugs-annotations-4.3.0.jar opennbt-1.4.jar netty-all-4.1
+ .66.Final.jar asm-tree-7.3.1.jar netty-transport-native-unix-common-4.1
+ .65.Final.jar packetlib-2.1.jar adventure-text-serializer-gson-4.9.3.ja
+ r mcauthlib-6f3d6aada5.jar netty-buffer-4.1.65.Final.jar dns-2.0.8.jar 
+ examination-string-1.3.0.jar adventure-nbt-4.9.3.jar netty-resolver-4.1
+ .65.Final.jar examination-api-1.3.0.jar asm-7.3.1.jar asm-commons-7.3.1
+ .jar commons-io-2.13.0.jar netty-incubator-transport-native-io_uring-0.
+ 0.8.Final-linux-x86_64.jar netty-transport-4.1.65.Final.jar adventure-a
+ pi-4.9.3.jar mcprotocollib-1.18.2-1.jar annotations-22.0.0.jar asm-util
+ -7.3.1.jar adventure-key-4.9.3.jar gson-2.8.2.jar asm-analysis-7.3.1.ja
+ r netty-common-4.1.65.Final.jar nashorn-core-15.4.jar adventure-text-se
+ rializer-gson-legacy-impl-4.9.3.jar jsr305-3.0.2.jar
+

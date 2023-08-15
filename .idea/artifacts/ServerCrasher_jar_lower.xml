@@ -1,0 +1,43 @@
+<component name="ArtifactManager">
+  <artifact name="ServerCrasher:jar_lower">
+    <output-path>$PROJECT_DIR$/out/artifacts/ServerCrasher_jar_lower</output-path>
+    <root id="root">
+      <element id="archive" name="ServerCrasher.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/lowerVersion/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="ServerCrasher" />
+      </element>
+      <element id="library" level="project" name="Maven: com.github.spotbugs:spotbugs-annotations:4.3.0" />
+      <element id="library" level="project" name="Maven: com.github.GeyserMC:opennbt:1.4" />
+      <element id="library" level="project" name="Maven: io.netty:netty-all:4.1.66.Final" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-tree:7.3.1" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport-native-unix-common:4.1.65.Final" />
+      <element id="library" level="project" name="Maven: com.github.GeyserMC:packetlib:2.1" />
+      <element id="library" level="project" name="Maven: net.kyori:adventure-text-serializer-gson:4.9.3" />
+      <element id="library" level="project" name="Maven: com.github.GeyserMC:mcauthlib:6f3d6aada5" />
+      <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.1.65.Final" />
+      <element id="library" level="project" name="Maven: org.xbill:dns:2.0.8" />
+      <element id="library" level="project" name="Maven: net.kyori:examination-string:1.3.0" />
+      <element id="library" level="project" name="Maven: net.kyori:adventure-nbt:4.9.3" />
+      <element id="library" level="project" name="Maven: io.netty:netty-resolver:4.1.65.Final" />
+      <element id="library" level="project" name="Maven: net.kyori:examination-api:1.3.0" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm:7.3.1" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-commons:7.3.1" />
+      <element id="library" level="project" name="Maven: commons-io:commons-io:2.13.0" />
+      <element id="library" level="project" name="Maven: io.netty.incubator:netty-incubator-transport-native-io_uring:linux-x86_64:0.0.8.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport:4.1.65.Final" />
+      <element id="library" level="project" name="Maven: net.kyori:adventure-api:4.9.3" />
+      <element id="library" level="project" name="Maven: com.github.steveice10:mcprotocollib:1.18.2-1" />
+      <element id="library" level="project" name="Maven: org.jetbrains:annotations:22.0.0" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-util:7.3.1" />
+      <element id="library" level="project" name="Maven: net.kyori:adventure-key:4.9.3" />
+      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.2" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-analysis:7.3.1" />
+      <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.65.Final" />
+      <element id="library" level="project" name="Maven: org.openjdk.nashorn:nashorn-core:15.4" />
+      <element id="library" level="project" name="Maven: net.kyori:adventure-text-serializer-gson-legacy-impl:4.9.3" />
+      <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
+    </root>
+  </artifact>
+</component>
