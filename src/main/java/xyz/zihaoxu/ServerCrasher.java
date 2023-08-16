@@ -44,6 +44,7 @@ public class ServerCrasher { // Class: ServerCrasher
                     Gson gson=new Gson();
                     configure=gson.fromJson(new FileReader(config_file), Configure.class);
                     attack();
+                    return;
                 }
             }
         }

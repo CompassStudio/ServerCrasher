@@ -10,6 +10,7 @@ import com.github.steveice10.mc.protocol.packet.ingame.serverbound.player.Server
 import com.github.steveice10.packetlib.Session;
 import com.github.steveice10.packetlib.event.session.*;
 import com.github.steveice10.packetlib.packet.Packet;
+import net.kyori.adventure.text.TextComponent;
 import xyz.zihaoxu.Main;
 import xyz.zihaoxu.Configure;
 import xyz.zihaoxu.ServerCrasher;
@@ -33,8 +34,10 @@ public class Listener implements SessionListener { // Class: Listener
     private double posY;
     private double posZ;
     private boolean isLoggedIn;
-    public Listener(ScriptBot bot) {
+    private String name;
+    public Listener(ScriptBot bot,String name) {
         this.bot = bot;
+        this.name=name;
     }
 
     public void sendChatMessage(Session session,String message) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -137,6 +140,10 @@ public class Listener implements SessionListener { // Class: Listener
 
     @Override
     public void disconnected(DisconnectedEvent event) {
+        if (event.getReason() instanceof TextComponent && this.isLoggedIn){
+            System.out.println(this.name+" Disconnected: "+((TextComponent) event.getReason()).content());
+        }
+        // System.out.println(this.name+" Disconnected: "+event.getReason());
     }
 
 }

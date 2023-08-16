@@ -35,7 +35,7 @@ public class AttackThread implements Runnable{ // AttackThread
                         proxy // proxy_info
                 );
                 if (!ServerCrasher.configure.should_add_listener){
-                    bot.addListener(new Listener(bot.getScript())); // bot.addListener(new Listener());
+                    bot.addListener(new Listener(bot.getScript(),nickname)); // bot.addListener(new Listener());
                 }
                 bot.run(); // bot.connect();
 //                while (bot.client.isConnected()){

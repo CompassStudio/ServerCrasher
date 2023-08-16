@@ -58,7 +58,7 @@ public class Bot { // Class: Bot
 
     public void run() throws InterruptedException { // connect()
         Main.scriptManager.call("bot_pre_connect", script);
-        this.client.setConnectTimeout(3); // 防止在一个代理上吊死
+        this.client.setConnectTimeout(5); // 防止在一个代理上吊死
         this.client.connect(true);
         Thread.sleep(3000);
         while (this.client.isConnected()){
